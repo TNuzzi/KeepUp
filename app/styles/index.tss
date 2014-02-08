@@ -27,6 +27,12 @@
         fontSize: '14dp'
     }
 }
+".font-18-helveticaneue-utlralight":{
+    font:{
+        fontFamily: 'HelveticaNeue-UltraLight',
+        fontSize: '18dp'
+    }
+}
 
 ".glyphish-clock-1": {
     image: '/images/728-clock.png'
