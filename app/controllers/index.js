@@ -1,5 +1,8 @@
-function doClick(e) {
-    alert($.label.text);
+function showMine() {
+    alert("showMine");
 }
 
-$.index.open();
+function showLocations() {
+    alert("showLocations");
+}
+$.win1.open();
