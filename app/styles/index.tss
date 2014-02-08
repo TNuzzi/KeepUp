@@ -27,3 +27,22 @@
         fontSize: '14dp'
     }
 }
+
+".glyphish-clock-1": {
+    image: '/images/728-clock.png'
+}
+".glyphish-question": {
+    image: '/images/739-question.png'
+}
+".glyphish-heart-selected": {
+    image: '/images/748-heart-selected.png'
+}
+".glyphish-heart-1": {
+    image: '/images/748-heart.png'
+}
+".glyphish-map-location": {
+    image: '/images/789-map-location.png'
+}
+".glyphish-map-1": {
+    image: '/images/852-map.png'
+}

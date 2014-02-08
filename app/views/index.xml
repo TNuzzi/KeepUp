@@ -19,44 +19,42 @@
                 </View>
             </View>
             <ScrollView class="h-fill w-fill">
-               <View class="w-95% h-size t-10 rounded-border-4 bg-white">
-                    <!-- <View class="l-10 r-10 t-10 b-10 lo-horizontal" height="330dp">
-                        <View class="n-col-2 h-50 lo-composite">
-                            <ImageView image="sample-img.png" class="h-40 w-40 t-0 l-0" />
+                <View class="w-95% h-size t-10 rounded-border-4 bg-white">
+                    <View class="container t-10">
+                        <View class="col-1">
+                            <ImageView class="glyphish-question" />
+                            <Label>what</Label>
                         </View>
-                        <View class="n-col-8 lo-horizontal h-50">
-                            <Label class="font-14-helveticaneue-bold">John Smith</Label>
-                            <Label class="l-2">with</Label>
-                            <Label class="l-2 font-14-helveticaneue-bold">Jane Smith</Label>
-                            <Label class="l-2">and</Label>
-                            <Label class="l-2 font-14-helveticaneue-bold">3 others</Label>
-                            <View class="n-col-12 lo-horizontal">
-                                <Label class="small ">Yesterday in Austin, TX</Label>
-                                <ImageView class="l-5 glyphish-location w-10 h-10" />
-                            </View>
+                        <View class="h-50 w-2 vert-line t-0"></View>
+                        <View class="col-3">
+                            <Label>adfs</Label>
                         </View>
-                        <View class="n-col-2 h-50">
-                            <Label class="font-14-helveticaneue-bold color-gray w-100% text-right">V</Label>
+                        <View class="col-1">
+                            <ImageView class="glyphish-clock-1" />
+                            <Label>when</Label>
                         </View>
-                        <Label class="n-col-12 t-10">Good friends, good food and a lot of laughs.</Label>
-                        <ImageView image="sample-img.png" class="w-100% h-200 t-10" />
-                        <Label class="n-col-12 t-15 small">10 Likes 3 Comments</Label>
-                    </View> -->
+                        <View class="h-50 w-2 vert-line t-0"></View>
+                        <View class="col-3">
+                            <Label>adfs</Label>
+                        </View>
+                        <View class="col-1">
+                            <ImageView class="glyphish-map-location" />
+                            <Label>where</Label>
+                        </View>
+                        <View class="h-50 w-2 vert-line t-0"></View>
+                        <View class="col-3">
+                            <Label>adfs</Label>
+                        </View>
+                    </View>
                     <View class="n-container h-44 fb-toolbar-bg-color">
-                        <View class="n-col-4 lo-horizontal t-10%">
-                            <ImageView class="h-15 w-15 glyphish-sun l-15%" />
-                            <Label class="font-14-helveticaneue-bold fb-toolbar-color l-5% w-60%">Like</Label>
-                            <View class="h-100% w-2"></View>
+                        <View class="n-col-6 lo-horizontal" onClick="showMine">
+                            <ImageView class="glyphish-map-1 h-20 w-20 l-15" />
+                            <Label class="font-14-helveticaneue-bold color-gray text-center l-10 w-60%">DIRECTIONS</Label>
                         </View>
-                        <View class="n-col-4 lo-horizontal t-10%">
-                            <ImageView class="h-15 w-15 glyphish-chat" />
-                            <Label class="font-14-helveticaneue-bold fb-toolbar-color l-5%">Comment</Label>
-                            <View class="h-100% w-2"></View>
-                        </View>
-                        <View class="n-col-4 lo-horizontal t-10%">
-                            <ImageView class="h-15 w-20 glyphish-squiggle l-20%" />
-                            <Label class="font-14-helveticaneue-bold fb-toolbar-color l-5%">Share</Label>
-                            <View class="h-100% w-2"></View>
+                        <View class="h-100% w-2 vert-line t-0"></View>
+                        <View class="n-col-6 lo-horizontal" onClick="showLocations">
+                            <ImageView class="glyphish-heart-1 h-20 w-20 l-40" />
+                            <Label class="font-14-helveticaneue-bold color-gray text-left l-10 w-30%">SAVE</Label>
                         </View>
                     </View>
                 </View>
