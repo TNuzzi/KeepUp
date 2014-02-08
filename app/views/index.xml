@@ -47,7 +47,7 @@
                         </View>
                     </View>
                     <View class="n-container h-44 fb-toolbar-bg-color">
-                        <View class="n-col-6 lo-horizontal" onClick="showMine">
+                        <View class="n-col-6 lo-horizontal" onClick="getDirections">
                             <ImageView class="glyphish-map-1 h-20 w-20 l-15" />
                             <Label class="font-14-helveticaneue-bold color-gray text-center l-10 w-60%">DIRECTIONS</Label>
                         </View>

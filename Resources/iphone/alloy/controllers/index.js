@@ -5,6 +5,23 @@ function Controller() {
     function showLocations() {
         alert("showLocations");
     }
+    function getDirections() {
+        if (false == Titanium.Geolocation.locationServicesEnabled) Titanium.UI.createAlertDialog({
+            title: "Step Up Womens Network",
+            message: "You need to be online to view this page."
+        }).show(); else {
+            Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
+            Titanium.Geolocation.distanceFilter = 10;
+            Titanium.Geolocation.getCurrentPosition(function(e) {
+                if (e.error) return;
+                var longitude = e.coords.longitude;
+                var latitude = e.coords.latitude;
+                var url = "maps://maps.google.com/maps?f=d&source=s_d&saddr=" + latitude + "," + longitude + "&daddr=1520+broadway+new+york&hl=en&geocode=&mra=ls&amp;sll=" + latitude + "," + longitude + "&sspn=0.318051,1.056747&ie=UTF8&z=7";
+                Ti.Platform.openURL(url);
+                Ti.API.info(url);
+            });
+        }
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -347,7 +364,7 @@ function Controller() {
         id: "__alloyId34"
     });
     $.__views.__alloyId33.add($.__views.__alloyId34);
-    showMine ? $.__views.__alloyId34.addEventListener("click", showMine) : __defers["$.__views.__alloyId34!click!showMine"] = true;
+    getDirections ? $.__views.__alloyId34.addEventListener("click", getDirections) : __defers["$.__views.__alloyId34!click!getDirections"] = true;
     $.__views.__alloyId35 = Ti.UI.createImageView({
         image: "/images/852-map.png",
         width: "20dp",
@@ -422,7 +439,7 @@ function Controller() {
     $.win1.open();
     __defers["$.__views.__alloyId5!click!showMine"] && $.__views.__alloyId5.addEventListener("click", showMine);
     __defers["$.__views.__alloyId9!click!showLocations"] && $.__views.__alloyId9.addEventListener("click", showLocations);
-    __defers["$.__views.__alloyId34!click!showMine"] && $.__views.__alloyId34.addEventListener("click", showMine);
+    __defers["$.__views.__alloyId34!click!getDirections"] && $.__views.__alloyId34.addEventListener("click", getDirections);
     __defers["$.__views.__alloyId38!click!showLocations"] && $.__views.__alloyId38.addEventListener("click", showLocations);
     _.extend($, exports);
 }
