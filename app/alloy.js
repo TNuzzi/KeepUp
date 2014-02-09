@@ -23,7 +23,6 @@ Alloy.Globals.checkForUpdates = function() {
             for (var i = eventsRest.length - 1; i >= 0; i--) {
                 event = eventsRest.at(i);
                 localEvent = events.get(event.get("id"));
-                // console.log(JSON.stringify(localEvent.toJSON()));
                 if (localEvent !== undefined) {
                     if (localEvent.get("checksum") !== event.get("checksum")) {
                         console.log("Update detected");

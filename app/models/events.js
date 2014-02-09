@@ -1,3 +1,6 @@
+/**
+ * Model for local cache of events.  Stored in properties files
+ */
 exports.definition = {
     config: {
 

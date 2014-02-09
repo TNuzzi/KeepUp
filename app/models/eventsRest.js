@@ -1,3 +1,6 @@
+/**
+ * Remote events servered from heroku
+ */
 exports.definition = {
 	config: {
 		URL: 'http://stepupapi.herokuapp.com/api/events',

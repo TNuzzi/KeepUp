@@ -1,3 +1,6 @@
+/**
+ * Local favorite storage
+ */
 exports.definition = {
 	config: {
 
