@@ -10,7 +10,21 @@ exports.definition = {
         return Model;
     },
     extendCollection: function(Collection) {
-        _.extend(Collection.prototype, {});
+        _.extend(Collection.prototype, {
+            filterLocation: function(location) {
+                var filteredList = _.filter(this.models, function(model) {
+                    console.log(model.get("area"));
+                    console.log(location);
+                    return model.get("area") === location;
+                });
+                console.log(filteredList.length);
+                return Alloy.createCollection("events").add(filteredList);
+            },
+            comparator: function(activity) {
+                var date = new Date(activity.get("start_date"));
+                return date.getTime();
+            }
+        });
         return Collection;
     }
 };

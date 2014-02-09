@@ -1,4 +1,8 @@
 function Controller() {
+    function syncWithServer() {
+        console.log("refresh");
+        Alloy.Globals.updateEventTable();
+    }
     function showMine() {
         data = [];
         favorites.fetch();
@@ -38,26 +42,38 @@ function Controller() {
         id: "win2",
         title: "Step Up Events"
     });
-    $.__views.__alloyId35 = Ti.UI.createView({
+    $.__views.__alloyId36 = Ti.UI.createButton({
+        font: {
+            fontFamily: "HelveticaNeue-Light",
+            fontSize: "14dp"
+        },
+        height: "44dp",
+        width: "100%",
+        image: "/images/759-refresh-2.png",
+        id: "__alloyId36"
+    });
+    syncWithServer ? $.__views.__alloyId36.addEventListener("click", syncWithServer) : __defers["$.__views.__alloyId36!click!syncWithServer"] = true;
+    $.__views.win2.rightNavButton = $.__views.__alloyId36;
+    $.__views.__alloyId37 = Ti.UI.createView({
         layout: "horizontal",
         color: "ffffff",
         backgroundColor: "f1e4b7",
         width: "100%",
         height: "44dp",
-        id: "__alloyId35"
+        id: "__alloyId37"
     });
-    $.__views.win2.add($.__views.__alloyId35);
-    $.__views.__alloyId36 = Ti.UI.createView({
+    $.__views.win2.add($.__views.__alloyId37);
+    $.__views.__alloyId38 = Ti.UI.createView({
         layout: "horizontal",
         color: "ffffff",
         left: 0,
         height: Ti.UI.FILL,
         width: "49.5%",
-        id: "__alloyId36"
+        id: "__alloyId38"
     });
-    $.__views.__alloyId35.add($.__views.__alloyId36);
-    showMine ? $.__views.__alloyId36.addEventListener("click", showMine) : __defers["$.__views.__alloyId36!click!showMine"] = true;
-    $.__views.__alloyId37 = Ti.UI.createLabel({
+    $.__views.__alloyId37.add($.__views.__alloyId38);
+    showMine ? $.__views.__alloyId38.addEventListener("click", showMine) : __defers["$.__views.__alloyId38!click!showMine"] = true;
+    $.__views.__alloyId39 = Ti.UI.createLabel({
         font: {
             fontFamily: "HelveticaNeue-Bold",
             fontSize: "14dp"
@@ -68,10 +84,10 @@ function Controller() {
         width: "100%",
         top: "15dp",
         text: "FAVORITES",
-        id: "__alloyId37"
+        id: "__alloyId39"
     });
-    $.__views.__alloyId36.add($.__views.__alloyId37);
-    $.__views.__alloyId38 = Ti.UI.createView({
+    $.__views.__alloyId38.add($.__views.__alloyId39);
+    $.__views.__alloyId40 = Ti.UI.createView({
         layout: "vertical",
         color: "ffffff",
         borderRadius: "4dp",
@@ -80,19 +96,19 @@ function Controller() {
         width: "2dp",
         height: "100%",
         top: "0dp",
-        id: "__alloyId38"
+        id: "__alloyId40"
     });
-    $.__views.__alloyId35.add($.__views.__alloyId38);
-    $.__views.__alloyId39 = Ti.UI.createView({
+    $.__views.__alloyId37.add($.__views.__alloyId40);
+    $.__views.__alloyId41 = Ti.UI.createView({
         layout: "horizontal",
         color: "ffffff",
         left: 0,
         height: Ti.UI.FILL,
         width: "49.5%",
-        id: "__alloyId39"
+        id: "__alloyId41"
     });
-    $.__views.__alloyId35.add($.__views.__alloyId39);
-    showLocations ? $.__views.__alloyId39.addEventListener("click", showLocations) : __defers["$.__views.__alloyId39!click!showLocations"] = true;
+    $.__views.__alloyId37.add($.__views.__alloyId41);
+    showLocations ? $.__views.__alloyId41.addEventListener("click", showLocations) : __defers["$.__views.__alloyId41!click!showLocations"] = true;
     $.__views.location = Ti.UI.createLabel({
         font: {
             fontFamily: "HelveticaNeue-Bold",
@@ -103,10 +119,10 @@ function Controller() {
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
         width: "100%",
         top: "15dp",
-        text: "ALL",
+        text: "MOST RECENT",
         id: "location"
     });
-    $.__views.__alloyId39.add($.__views.location);
+    $.__views.__alloyId41.add($.__views.location);
     $.__views.eventTable = Ti.UI.createTableView({
         backgroundColor: "transparent",
         width: Ti.UI.FILL,
@@ -123,10 +139,11 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     Alloy.Globals.checkForUpdates();
+    var events = Alloy.Collections.instance("events");
+    events.fetch();
     var favorites = Alloy.Collections.instance("favorites");
     favorites.fetch();
     Alloy.Globals.updateEventTable = function() {
-        var events = Alloy.Collections.instance("events");
         events.fetch();
         var data = [];
         for (var i = 0; events.length > i; i++) {
@@ -136,38 +153,45 @@ function Controller() {
             }).getView());
         }
         $.eventTable.setData(data);
+        $.eventTable.scrollToTop();
     };
     Alloy.Globals.updateEventTable();
     var picker = Alloy.createWidget("wriststrap.picker", "widget", {
-        data: [ [ {
-            title: "All",
-            id: "all"
+        data: [ [ , {
+            title: "New York",
+            id: "New York"
         }, {
             title: "Chicago",
-            id: "chicago"
+            id: "Chicago"
         }, {
             title: "Los Angeles",
-            id: "la"
+            id: "Los Angeles"
         }, {
-            title: "New York",
-            id: "newyork"
+            title: "Most Recent",
+            id: "All"
         } ] ],
         onDone: function(selectedValues) {
-            "all" === selectedValues[0] ? $.location.setText("ALL") : "chicago" === selectedValues[0] ? $.location.setText("CHICAGO") : "la" === selectedValues[0] ? $.location.setText("LOS ANGELES") : "newyork" === selectedValues[0] && $.location.setText("NEW YORK");
-            data = [];
-            for (var i = 0; events.length > i; i++) {
-                var event = events.at(i);
-                data.push(Alloy.createController("eventRow", {
-                    model: event
-                }).getView());
+            "All" === selectedValues[0] ? $.location.setText("MOST RECENT") : "Chicago" === selectedValues[0] ? $.location.setText("CHICAGO") : "Los Angeles" === selectedValues[0] ? $.location.setText("LOS ANGELES") : "New York" === selectedValues[0] && $.location.setText("NEW YORK");
+            if ("All" === selectedValues[0]) Alloy.Globals.updateEventTable(); else {
+                data = [];
+                var newLocations = events.filterLocation(selectedValues[0]);
+                console.log(newLocations.length);
+                for (var i = 0; newLocations.length > i; i++) {
+                    var event = newLocations.at(i);
+                    data.push(Alloy.createController("eventRow", {
+                        model: event
+                    }).getView());
+                }
+                $.eventTable.setData(data);
+                $.eventTable.scrollToTop();
             }
-            $.eventTable.setData(data);
         }
     });
     $.win1.add(picker.getView());
     $.win1.open();
-    __defers["$.__views.__alloyId36!click!showMine"] && $.__views.__alloyId36.addEventListener("click", showMine);
-    __defers["$.__views.__alloyId39!click!showLocations"] && $.__views.__alloyId39.addEventListener("click", showLocations);
+    __defers["$.__views.__alloyId36!click!syncWithServer"] && $.__views.__alloyId36.addEventListener("click", syncWithServer);
+    __defers["$.__views.__alloyId38!click!showMine"] && $.__views.__alloyId38.addEventListener("click", showMine);
+    __defers["$.__views.__alloyId41!click!showLocations"] && $.__views.__alloyId41.addEventListener("click", showLocations);
     _.extend($, exports);
 }
 

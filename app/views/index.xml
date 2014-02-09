@@ -1,8 +1,11 @@
 <Alloy>
-    <Collection src="favorites" instance="true"/>
-    <Collection src="events" instance="true"/>
+    <Collection src="favorites" instance="true" />
+    <Collection src="events" instance="true" />
     <NavigationWindow id="win1" platform="ios">
         <Window id="win2" title="Step Up Events" class="fb-bar-color composite">
+            <RightNavButton>
+                <Button class="glyphish-refresh-2" onClick="syncWithServer"/>
+            </RightNavButton>
             <View class="n-container h-44 fb-toolbar-bg-color">
                 <View class="n-col-6 h-fill lo-horizontal" onClick="showMine">
                     <Label class="font-14-helveticaneue-bold color-gray text-center w-100% t-15 touch-disabled">FAVORITES</Label>
@@ -10,7 +13,7 @@
                 </View>
                 <View class="h-100% w-2 vert-line t-0" />
                 <View class="n-col-6 h-fill lo-horizontal" onClick="showLocations">
-                    <Label id="location" class="font-14-helveticaneue-bold color-gray text-center t-15 w-100% touch-disabled">ALL</Label>
+                    <Label id="location" class="font-14-helveticaneue-bold color-gray text-center t-15 w-100% touch-disabled">MOST RECENT</Label>
                     <!-- <Label class="small color-success text-center w-100%">2 updates</Label> -->
                 </View>
             </View>

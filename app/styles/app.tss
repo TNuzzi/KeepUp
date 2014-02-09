@@ -76,3 +76,6 @@
 ".glyphish-map-1": {
     image: '/images/852-map.png'
 }
+".glyphish-refresh-2": {
+    image: '/images/759-refresh-2.png'
+}

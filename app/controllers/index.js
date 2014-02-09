@@ -1,5 +1,8 @@
 Alloy.Globals.checkForUpdates();
 
+var events = Alloy.Collections.instance("events");
+events.fetch();
+
 var favorites = Alloy.Collections.instance("favorites");
 favorites.fetch();
 
@@ -44,7 +47,6 @@ favorites.fetch();
 // }
 
 Alloy.Globals.updateEventTable = function() {
-    var events = Alloy.Collections.instance("events");
     events.fetch();
 
     var data = [];
@@ -55,9 +57,15 @@ Alloy.Globals.updateEventTable = function() {
         }).getView());
     }
     $.eventTable.setData(data);
+    $.eventTable.scrollToTop();
 };
 
 Alloy.Globals.updateEventTable();
+
+function syncWithServer() {
+    console.log("refresh");
+    Alloy.Globals.updateEventTable();
+}
 
 function showMine() {
     data = [];
@@ -84,39 +92,47 @@ function showLocations() {
 
 var picker = Alloy.createWidget("wriststrap.picker", "widget", {
     data: [
-        [{
-            title: 'All',
-            id: 'all'
+        [, {
+            title: 'New York',
+            id: 'New York'
         }, {
             title: 'Chicago',
-            id: 'chicago'
+            id: 'Chicago'
         }, {
             title: 'Los Angeles',
-            id: 'la'
+            id: 'Los Angeles'
         }, {
-            title: 'New York',
-            id: 'newyork'
+            title: 'Most Recent',
+            id: 'All'
         }]
     ],
     onDone: function(selectedValues) {
-        if (selectedValues[0] === "all") {
-            $.location.setText('ALL');
-        } else if (selectedValues[0] === "chicago") {
+        if (selectedValues[0] === "All") {
+            $.location.setText('MOST RECENT');
+        } else if (selectedValues[0] === "Chicago") {
             $.location.setText('CHICAGO');
-        } else if (selectedValues[0] === "la") {
+        } else if (selectedValues[0] === "Los Angeles") {
             $.location.setText('LOS ANGELES');
-        } else if (selectedValues[0] === "newyork") {
+        } else if (selectedValues[0] === "New York") {
             $.location.setText('NEW YORK');
         }
 
-        data = [];
-        for (var i = 0; i < events.length; i++) {
-            var event = events.at(i);
-            data.push(Alloy.createController("eventRow", {
-                model: event
-            }).getView());
+        if (selectedValues[0] === "All") {
+            Alloy.Globals.updateEventTable();
+        } else {
+            data = [];
+            var newLocations = events.filterLocation(selectedValues[0]);
+            console.log(newLocations.length);
+            for (var i = 0; i < newLocations.length; i++) {
+                var event = newLocations.at(i);
+                data.push(Alloy.createController("eventRow", {
+                    model: event
+                }).getView());
+            }
+
+            $.eventTable.setData(data);
+            $.eventTable.scrollToTop();
         }
-        $.eventTable.setData(data);
     }
 });
 
