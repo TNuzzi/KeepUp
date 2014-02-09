@@ -1,8 +1,5 @@
 Alloy.Globals.checkForUpdates();
 
-var events = Alloy.Collections.instance("events");
-events.fetch();
-
 var favorites = Alloy.Collections.instance("favorites");
 favorites.fetch();
 
@@ -46,16 +43,21 @@ favorites.fetch();
 //     }
 // }
 
-console.log(events.length);
+Alloy.Globals.updateEventTable = function() {
+    var events = Alloy.Collections.instance("events");
+    events.fetch();
 
-var data = [];
-for (var i = 0; i < events.length; i++) {
-    var event = events.at(i);
-    data.push(Alloy.createController("eventRow", {
-        model: event
-    }).getView());
-}
-$.eventTable.setData(data);
+    var data = [];
+    for (var i = 0; i < events.length; i++) {
+        var event = events.at(i);
+        data.push(Alloy.createController("eventRow", {
+            model: event
+        }).getView());
+    }
+    $.eventTable.setData(data);
+};
+
+Alloy.Globals.updateEventTable();
 
 function showMine() {
     data = [];
@@ -68,7 +70,7 @@ function showMine() {
         }).getView());
     }
 
-    if(data.length !== 0)
+    if (data.length !== 0)
         $.eventTable.setData(data);
     else
         alert("You have no favorites saved");

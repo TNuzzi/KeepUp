@@ -1,10 +1,13 @@
 <Alloy>
     <TableViewRow class="cell-select-style-none">
         <View class="w-95% h-size t-10 rounded-border-4 bg-white">
-            <View id="headerView" class="w-fill h-size" backgroundColor="#e39b23">
-                <Label id="header" class="w-100% h-30 color-white l-5 font-18-helveticaneue-utlralight">Teen Event</Label>
+            <View id="headerView" class="w-fill h-size lo-horizontal" backgroundColor="#e39b23">
+                <View class="container h-25" bottom="0dp">
+                    <Label id="header" class="col-3 color-white font-18-helveticaneue-utlralight">Teen Event</Label>
+                    <Label id="updated" class="color-white l-20 bg-success rounded-border-4 hide">updated</Label>
+                </View>
             </View>
-            <View class="container t-10">
+            <View class="container t-0">
                 <View class="col-1">
                     <ImageView class="glyphish-question" />
                     <Label class="font-14-helveticaneue-utlralight">what</Label>

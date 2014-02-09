@@ -17,6 +17,10 @@ $.date.setText(start_date.format("MMMM Do YYYY"));
 $.time.setText(start_date.format("h:mm a") + ' - ' + end_date.format("h:mm a"));
 $.location.setText(location);
 
+if(model.get("hasBeenUpdated")) {
+    $.updated.show();
+}
+
 if (category === 'Teen Programs') {
     $.resetClass($.headerView, "w-fill h-size eventRowHeaderColor-teen");
     $.header.setText('Teen Event');
@@ -57,6 +61,7 @@ function getDirections() {
             message: 'You need to be online to view this page.'
         }).show();
     } else {
+        Ti.Geolocation.purpose = "Receive User Location";
         Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
         Titanium.Geolocation.distanceFilter = 10;
         Titanium.Geolocation.getCurrentPosition(function(e) {

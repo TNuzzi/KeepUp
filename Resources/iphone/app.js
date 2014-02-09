@@ -29,6 +29,7 @@ Alloy.Globals.checkForUpdates = function() {
                     events.add(newEvent);
                 }
             }
+            Alloy.Globals.updateEventTable();
         }
     });
 };
