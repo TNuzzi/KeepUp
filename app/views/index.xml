@@ -10,18 +10,18 @@
             <View class="n-container h-44 fb-toolbar-bg-color">
                 <View class="n-col-6 lo-horizontal" onClick="showMine">
                     <Label class="font-14-helveticaneue-bold color-gray text-center w-100%">MINE</Label>
-                    <Label class="small color-success text-center w-100%">2 updates</Label>
+                    <!-- <Label class="small color-success text-center w-100%">2 updates</Label> -->
                 </View>
                 <View class="h-100% w-2 vert-line t-0"></View>
                 <View class="n-col-6 lo-horizontal" onClick="showLocations">
                     <Label class="font-14-helveticaneue-bold color-gray text-center w-100%">ALL</Label>
-                    <Label class="small color-success text-center w-100%">2 updates</Label>
+                    <!-- <Label class="small color-success text-center w-100%">2 updates</Label> -->
                 </View>
             </View>
             <ScrollView class="h-fill w-fill">
                 <View class="w-95% h-size t-10 rounded-border-4 bg-white">
                     <View class="w-fill h-size" backgroundColor="#e39b23">
-                        <Label class="w-100% h-20 color-white l-5 font-18-helveticaneue-utlralight">Teen Event</Label>
+                        <Label class="w-100% h-30 color-white l-5 font-18-helveticaneue-utlralight">Teen Event</Label>
                     </View>
                     <View class="container t-10">
                         <View class="col-1">
@@ -70,7 +70,7 @@
                 </View>
                 <View class="w-95% h-size t-10 rounded-border-4 bg-white">
                     <View class="w-fill h-size" backgroundColor="#b74700">
-                        <Label class="w-100% h-20 color-white l-5 font-18-helveticaneue-utlralight">Social Networking</Label>
+                        <Label class="w-100% h-30 color-white l-5 font-18-helveticaneue-utlralight">Social Networking</Label>
                     </View>
                     <View class="container t-10">
                         <View class="col-1">
@@ -119,7 +119,7 @@
                 </View>
                 <View class="w-95% h-size t-10 rounded-border-4 bg-white">
                     <View class="w-fill h-size" backgroundColor="#798191">
-                        <Label class="w-100% h-20 color-white l-5 font-18-helveticaneue-utlralight">Processional Mentorship</Label>
+                        <Label class="w-100% h-30 color-white l-5 font-18-helveticaneue-utlralight">Processional Mentorship</Label>
                     </View>
                     <View class="container t-10">
                         <View class="col-1">
