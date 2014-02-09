@@ -1,4 +1,4 @@
-Keep Up for (suwn)[http://www.briseeley.com/wp-content/uploads/2013/09/SUWNLogo-copy-300x171.jpg]
+Keep Up for ![SUWN](http://www.briseeley.com/wp-content/uploads/2013/09/SUWNLogo-copy-300x171.jpg)
 =======
 
 Keep Up is a mobile app that regularly checks the Step Up Women's Network (SUWN) for calendar events and syncs them with the app. If events are changed or added, the app alerts SUWN attendees. App users can also favorite events and find events by location.
