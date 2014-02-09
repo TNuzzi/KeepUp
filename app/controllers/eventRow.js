@@ -5,15 +5,16 @@ var title = model.get("title");
 var location = model.get("location");
 
 // No offset
-var date = moment(model.get("date"));
+var start_date = moment(model.get("start_date"));
+var end_date = moment(model.get("end_date"));
 var category = model.get("category");
 
 var favorites = Alloy.Collections.instance("favorites");
 favorites.fetch();
 
 $.title.setText(title);
-$.date.setText(moment().format("MMMM Do YYYY"));
-$.time.setText(moment().format("h:mm a"));
+$.date.setText(start_date.format("MMMM Do YYYY"));
+$.time.setText(start_date.format("h:mm a") + ' - ' + end_date.format("h:mm a"));
 $.location.setText(location);
 
 if (category === 'Teen Programs') {

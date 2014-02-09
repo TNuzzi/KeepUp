@@ -122,46 +122,12 @@ function Controller() {
     $.__views.win1 && $.addTopLevelView($.__views.win1);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    Alloy.Globals.checkForUpdates();
     var events = Alloy.Collections.instance("events");
     events.fetch();
     var favorites = Alloy.Collections.instance("favorites");
     favorites.fetch();
-    var test = [ {
-        title: "Pathways to Professions Workshop",
-        description: 'Mentor 11th graders as they explore career possibilities-- help a girl "see what she can be!"',
-        date: "1391860800",
-        location: "Pfizer World Headquarters 235 East 42nd Street New York, NY 10017",
-        updated_at: "1391774400",
-        category: "Teen Programs"
-    }, {
-        title: "Pathways to Professions Workshop",
-        description: 'Mentor 11th graders as they explore career possibilities-- help a girl "see what she can be!"',
-        date: "1391860800",
-        location: "Pfizer World Headquarters 235 East 42nd Street New York, NY 10017",
-        updated_at: "1391774400",
-        category: "Teen Programs"
-    }, {
-        title: "Mentor for a day at Step Up's After School Programs at Johnson College Prep!",
-        description: "Help Step Up teens become confident, college-bound and career-ready while connecting with other dynamic, professional women and activating your inner philanthropist.",
-        date: "1392048000",
-        location: "Johnson College Prep 6350 S Stewart Ave. Room TBD Chicago, IL 60621",
-        updated_at: "1391774400",
-        category: "Networking"
-    }, {
-        title: "Mentor for a day at Step Up's After School Programs at Johnson College Prep!",
-        description: "Help Step Up teens become confident, college-bound and career-ready while connecting with other dynamic, professional women and activating your inner philanthropist.",
-        date: "1392048000",
-        location: "Johnson College Prep 6350 S Stewart Ave. Room TBD Chicago, IL 60621",
-        updated_at: "1391774400",
-        category: "Professional Development"
-    } ];
-    if (0 === events.length) for (var i = 0; test.length > i; i++) {
-        var event = test[i];
-        var model = Alloy.createModel("events");
-        model.set(event);
-        model.save();
-        events.add(model);
-    }
+    console.log(events.length);
     var data = [];
     for (var i = 0; events.length > i; i++) {
         var event = events.at(i);
