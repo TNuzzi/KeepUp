@@ -1,3 +1,45 @@
+var test = [{
+    "title": "Pathways to Professions Workshop",
+    "description": "Mentor 11th graders as they explore career possibilities-- help a girl \"see what she can be!\"",
+    "date": "1391860800",
+    "location": "Pfizer World Headquarters 235 East 42nd Street New York, NY 10017",
+    "updated_at": "1391774400",
+    "category": "Teen Programs"
+}, {
+    "title": "Pathways to Professions Workshop",
+    "description": "Mentor 11th graders as they explore career possibilities-- help a girl \"see what she can be!\"",
+    "date": "1391860800",
+    "location": "Pfizer World Headquarters 235 East 42nd Street New York, NY 10017",
+    "updated_at": "1391774400",
+    "category": "Teen Programs"
+}, {
+    "title": "Mentor for a day at Step Up's After School Programs at Johnson College Prep!",
+    "description": "Help Step Up teens become confident, college-bound and career-ready while connecting with other dynamic, professional women and activating your inner philanthropist.",
+    "date": "1392048000",
+    "location": "Johnson College Prep 6350 S Stewart Ave. Room TBD Chicago, IL 60621",
+    "updated_at": "1391774400",
+    "category": "Networking"
+}, {
+    "title": "Mentor for a day at Step Up's After School Programs at Johnson College Prep!",
+    "description": "Help Step Up teens become confident, college-bound and career-ready while connecting with other dynamic, professional women and activating your inner philanthropist.",
+    "date": "1392048000",
+    "location": "Johnson College Prep 6350 S Stewart Ave. Room TBD Chicago, IL 60621",
+    "updated_at": "1391774400",
+    "category": "Professional Development"
+}];
+
+var data = [];
+for (var i = 0; i < test.length; i++) {
+    var event = test[i];
+    data.push(Alloy.createController("eventRow", event).getView());
+};
+
+
+$.eventTable.setData(data);
+
+var favorites = Alloy.Collections.instance("favorites");
+favorites.fetch();
+
 function showMine() {
     alert("showMine");
 }
@@ -6,29 +48,4 @@ function showLocations() {
     alert("showLocations");
 }
 
-function getDirections() {
-    if (Titanium.Geolocation.locationServicesEnabled == false) {
-        Titanium.UI.createAlertDialog({
-            title : 'Step Up Womens Network',
-            message : 'You need to be online to view this page.'
-        }).show();
-    } else {
-        Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
-        Titanium.Geolocation.distanceFilter = 10;
-        Titanium.Geolocation.getCurrentPosition(function(e) {
-
-            if (e.error) {
-                return;
-            }
-            var longitude = e.coords.longitude;
-            var latitude = e.coords.latitude;
-
-            var url = "maps://maps.google.com/maps?f=d&source=s_d&saddr=" + latitude + "," + longitude + "&daddr=1520+broadway+new+york&hl=en&geocode=&mra=ls&amp;sll=" + latitude + "," + longitude + "&sspn=0.318051,1.056747&ie=UTF8&z=7";
-            Ti.Platform.openURL(url);
-            Ti.API.info(url);
-
-        });
-
-    }
-}
 $.win1.open();
