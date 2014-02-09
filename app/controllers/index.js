@@ -1,21 +1,8 @@
-var picker = Alloy.createWidget("wriststrap.picker", "widget", {
-    data: [[{
-            title: 'All',
-            id: 'testId'
-        },{
-            title: 'Chicago',
-            id: 'test1Id'
-        },{
-            title: 'Los Angeles',
-            id: 'test2Id'
-        },{
-            title: 'New York',
-            id: 'test3Id'
-        }]],
-    onDone: function (selectedValues) {
-        alert(selectedValues);
-    }
-});
+var events = Alloy.Collections.instance("events");
+events.fetch();
+
+var favorites = Alloy.Collections.instance("favorites");
+favorites.fetch();
 
 var test = [{
     "title": "Pathways to Professions Workshop",
@@ -47,24 +34,86 @@ var test = [{
     "category": "Professional Development"
 }];
 
+if (events.length === 0) {
+    for (var i = 0; i < test.length; i++) {
+        var event = test[i];
+        var model = Alloy.createModel("events");
+        model.set(event);
+        model.save();
+        events.add(model);
+    }
+}
+
 var data = [];
-for (var i = 0; i < test.length; i++) {
-    var event = test[i];
-    data.push(Alloy.createController("eventRow", event).getView());
-};
-
-
+for (var i = 0; i < events.length; i++) {
+    var event = events.at(i);
+    data.push(Alloy.createController("eventRow", {
+        model: event
+    }).getView());
+}
 $.eventTable.setData(data);
 
-var favorites = Alloy.Collections.instance("favorites");
-favorites.fetch();
-
 function showMine() {
-    alert("showMine");
+    data = [];
+    favorites.fetch();
+
+    for (var i = 0; i < favorites.length; i++) {
+        var favorite = favorites.at(i);
+        data.push(Alloy.createController("eventRow", {
+            model: favorite
+        }).getView());
+    }
+
+    if(data.length !== 0)
+        $.eventTable.setData(data);
+    else
+        alert("You have no favorites saved");
+
+    $.eventTable.scrollToTop();
 }
 
 function showLocations() {
     picker.getView().showPicker();
 }
+
+var picker = Alloy.createWidget("wriststrap.picker", "widget", {
+    data: [
+        [{
+            title: 'All',
+            id: 'all'
+        }, {
+            title: 'Chicago',
+            id: 'chicago'
+        }, {
+            title: 'Los Angeles',
+            id: 'la'
+        }, {
+            title: 'New York',
+            id: 'newyork'
+        }]
+    ],
+    onDone: function(selectedValues) {
+        if (selectedValues[0] === "all") {
+            $.location.setText('ALL');
+        } else if (selectedValues[0] === "chicago") {
+            $.location.setText('CHICAGO');
+        } else if (selectedValues[0] === "la") {
+            $.location.setText('LOS ANGELES');
+        } else if (selectedValues[0] === "newyork") {
+            $.location.setText('NEW YORK');
+        }
+
+        data = [];
+        for (var i = 0; i < events.length; i++) {
+            var event = events.at(i);
+            data.push(Alloy.createController("eventRow", {
+                model: event
+            }).getView());
+        }
+        $.eventTable.setData(data);
+    }
+});
+
 $.win1.add(picker.getView());
+
 $.win1.open();

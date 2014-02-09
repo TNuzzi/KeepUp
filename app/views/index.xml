@@ -1,19 +1,20 @@
 <Alloy>
-    <Collection src="favorites" />
+    <Collection src="favorites" instance="true"/>
+    <Collection src="events" instance="true"/>
     <NavigationWindow id="win1" platform="ios">
         <Window id="win2" title="Step Up Events" class="fb-bar-color composite">
             <View class="n-container h-44 fb-toolbar-bg-color">
-                <View class="n-col-6 lo-horizontal" onClick="showMine">
-                    <Label class="font-14-helveticaneue-bold color-gray text-center w-100%">FAVORITES</Label>
+                <View class="n-col-6 h-fill lo-horizontal" onClick="showMine">
+                    <Label class="font-14-helveticaneue-bold color-gray text-center w-100% t-15 touch-disabled">FAVORITES</Label>
                     <!-- <Label class="small color-success text-center w-100%">2 updates</Label> -->
                 </View>
                 <View class="h-100% w-2 vert-line t-0" />
-                <View class="n-col-6 lo-horizontal" onClick="showLocations">
-                    <Label class="font-14-helveticaneue-bold color-gray text-center w-100%">ALL</Label>
+                <View class="n-col-6 h-fill lo-horizontal" onClick="showLocations">
+                    <Label id="location" class="font-14-helveticaneue-bold color-gray text-center t-15 w-100% touch-disabled">ALL</Label>
                     <!-- <Label class="small color-success text-center w-100%">2 updates</Label> -->
                 </View>
             </View>
-            <TableView id="eventTable" class="h-fill w-fill sep-color-none" />
+            <TableView id="eventTable" class="h-fill w-fill table-sep-style-none" />
             <!-- <ScrollView class="h-fill w-fill">
                 <View class="w-95% h-size t-10 rounded-border-4 bg-white">
                     <View class="w-fill h-size" backgroundColor="#e39b23">

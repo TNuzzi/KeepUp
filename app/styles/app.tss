@@ -34,6 +34,20 @@
     }
 }
 
+".font-16-helveticaneue-utlralight":{
+    font:{
+        fontFamily: 'HelveticaNeue-UltraLight',
+        fontSize: '16dp'
+    }
+}
+
+".font-14-helveticaneue-utlralight":{
+    font:{
+        fontFamily: 'HelveticaNeue-UltraLight',
+        fontSize: '14dp'
+    }
+}
+
 ".eventRowHeaderColor-teen": {
     backgroundColor: "#e39b23"
 }

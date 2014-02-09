@@ -1,6 +1,17 @@
 function Controller() {
     function saveEvent(e) {
-        $.resetClass(e.source.children[0], "glyphish-heart-selected h-20 w-20 l-40 touch-disabled");
+        var favorite = favorites.get(model.id);
+        if (void 0 !== favorite) {
+            $.resetClass(e.source.children[0], "glyphish-heart-1 h-20 w-20 l-40 touch-disabled");
+            favorites.remove(favorite);
+            favorite.destroy();
+        } else {
+            $.resetClass(e.source.children[0], "glyphish-heart-selected h-20 w-20 l-40 touch-disabled");
+            favorite = Alloy.createModel("favorites");
+            favorite.set(model.toJSON());
+            favorite.save();
+            favorites.add(favorite);
+        }
     }
     function getDirections() {
         if (false === Titanium.Geolocation.locationServicesEnabled) Titanium.UI.createAlertDialog({
@@ -99,7 +110,7 @@ function Controller() {
     $.__views.__alloyId4.add($.__views.__alloyId5);
     $.__views.__alloyId6 = Ti.UI.createLabel({
         font: {
-            fontFamily: "HelveticaNeue-Light",
+            fontFamily: "HelveticaNeue-UltraLight",
             fontSize: "14dp"
         },
         color: "333333",
@@ -152,7 +163,7 @@ function Controller() {
     $.__views.__alloyId9.add($.__views.__alloyId10);
     $.__views.__alloyId11 = Ti.UI.createLabel({
         font: {
-            fontFamily: "HelveticaNeue-Light",
+            fontFamily: "HelveticaNeue-UltraLight",
             fontSize: "14dp"
         },
         color: "333333",
@@ -247,7 +258,7 @@ function Controller() {
     $.__views.__alloyId17.add($.__views.__alloyId18);
     $.__views.__alloyId19 = Ti.UI.createLabel({
         font: {
-            fontFamily: "HelveticaNeue-Light",
+            fontFamily: "HelveticaNeue-UltraLight",
             fontSize: "14dp"
         },
         color: "333333",
@@ -324,8 +335,8 @@ function Controller() {
     $.__views.__alloyId24.add($.__views.__alloyId25);
     $.__views.__alloyId26 = Ti.UI.createLabel({
         font: {
-            fontFamily: "HelveticaNeue-Bold",
-            fontSize: "14dp"
+            fontFamily: "HelveticaNeue-UltraLight",
+            fontSize: "16dp"
         },
         color: "808080",
         touchEnabled: false,
@@ -358,19 +369,19 @@ function Controller() {
     });
     $.__views.__alloyId23.add($.__views.__alloyId28);
     saveEvent ? $.__views.__alloyId28.addEventListener("click", saveEvent) : __defers["$.__views.__alloyId28!click!saveEvent"] = true;
-    $.__views.__alloyId29 = Ti.UI.createImageView({
+    $.__views.save = Ti.UI.createImageView({
         image: "/images/748-heart.png",
         touchEnabled: false,
         width: "20dp",
         height: "20dp",
         left: "40dp",
-        id: "__alloyId29"
+        id: "save"
     });
-    $.__views.__alloyId28.add($.__views.__alloyId29);
-    $.__views.__alloyId30 = Ti.UI.createLabel({
+    $.__views.__alloyId28.add($.__views.save);
+    $.__views.__alloyId29 = Ti.UI.createLabel({
         font: {
-            fontFamily: "HelveticaNeue-Bold",
-            fontSize: "14dp"
+            fontFamily: "HelveticaNeue-UltraLight",
+            fontSize: "16dp"
         },
         color: "808080",
         touchEnabled: false,
@@ -378,18 +389,20 @@ function Controller() {
         width: "30%",
         left: "10dp",
         text: "SAVE",
-        id: "__alloyId30"
+        id: "__alloyId29"
     });
-    $.__views.__alloyId28.add($.__views.__alloyId30);
+    $.__views.__alloyId28.add($.__views.__alloyId29);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var moment = require("alloy/moment");
     var args = arguments[0] || {};
-    console.log(JSON.stringify(args));
-    var title = args.title;
-    var location = args.location;
-    moment(args.date);
-    var category = args.category;
+    var model = args.model;
+    var title = model.get("title");
+    var location = model.get("location");
+    moment(model.get("date"));
+    var category = model.get("category");
+    var favorites = Alloy.Collections.instance("favorites");
+    favorites.fetch();
     $.title.setText(title);
     $.date.setText(moment().format("MMMM Do YYYY"));
     $.time.setText(moment().format("h:mm a"));
@@ -404,6 +417,7 @@ function Controller() {
         $.resetClass($.headerView, "w-fill h-size eventRowHeaderColor-processional-mentorship");
         $.header.setText("Processional Mentorship");
     }
+    void 0 === favorites.get(model.id) ? $.resetClass($.save, "glyphish-heart-1 h-20 w-20 l-40 touch-disabled") : $.resetClass($.save, "glyphish-heart-selected h-20 w-20 l-40 touch-disabled");
     __defers["$.__views.__alloyId24!click!getDirections"] && $.__views.__alloyId24.addEventListener("click", getDirections);
     __defers["$.__views.__alloyId28!click!saveEvent"] && $.__views.__alloyId28.addEventListener("click", saveEvent);
     _.extend($, exports);

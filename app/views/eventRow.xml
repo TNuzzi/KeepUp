@@ -1,5 +1,5 @@
 <Alloy>
-    <TableViewRow class="cell-select-style-none sep-color-none">
+    <TableViewRow class="cell-select-style-none">
         <View class="w-95% h-size t-10 rounded-border-4 bg-white">
             <View id="headerView" class="w-fill h-size" backgroundColor="#e39b23">
                 <Label id="header" class="w-100% h-30 color-white l-5 font-18-helveticaneue-utlralight">Teen Event</Label>
@@ -7,7 +7,7 @@
             <View class="container t-10">
                 <View class="col-1">
                     <ImageView class="glyphish-question" />
-                    <Label>what</Label>
+                    <Label class="font-14-helveticaneue-utlralight">what</Label>
                 </View>
                 <View class="h-50 w-2 vert-line t-0" />
                 <View class="col-3">
@@ -15,7 +15,7 @@
                 </View>
                 <View class="col-1">
                     <ImageView class="glyphish-clock-1" />
-                    <Label>when</Label>
+                    <Label class="font-14-helveticaneue-utlralight">when</Label>
                 </View>
                 <View class="h-50 w-2 vert-line t-0" />
                 <View class="col-3">
@@ -28,7 +28,7 @@
                 </View>
                 <View class="col-1">
                     <ImageView class="glyphish-map-location" />
-                    <Label>where</Label>
+                    <Label class="font-14-helveticaneue-utlralight">where</Label>
                 </View>
                 <View class="h-50 w-2 vert-line t-0" />
                 <View class="col-3">
@@ -40,12 +40,12 @@
             <View class="n-container h-44 fb-toolbar-bg-color">
                 <View class="n-col-6 lo-horizontal" onClick="getDirections">
                     <ImageView class="glyphish-map-1 h-20 w-20 l-15 touch-disabled" />
-                    <Label class="font-14-helveticaneue-bold color-gray text-center l-10 w-60% touch-disabled">DIRECTIONS</Label>
+                    <Label class="font-16-helveticaneue-utlralight color-gray text-center l-10 w-60% touch-disabled">DIRECTIONS</Label>
                 </View>
                 <View class="h-100% w-2 vert-line t-0" />
                 <View class="n-col-6 lo-horizontal" onClick="saveEvent">
-                    <ImageView class="glyphish-heart-1 h-20 w-20 l-40 touch-disabled" />
-                    <Label class="font-14-helveticaneue-bold color-gray text-left l-10 w-30% touch-disabled">SAVE</Label>
+                    <ImageView id="save" class="glyphish-heart-1 h-20 w-20 l-40 touch-disabled" />
+                    <Label class="font-16-helveticaneue-utlralight color-gray text-left l-10 w-30% touch-disabled">SAVE</Label>
                 </View>
             </View>
         </View>
