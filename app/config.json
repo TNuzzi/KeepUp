@@ -9,5 +9,5 @@
 	"os:blackberry": {},
 	"os:ios": {},
 	"os:mobileweb": {},
-	"dependencies": {}
+	"dependencies": {"wriststrap.picker":"1.0"}
 }

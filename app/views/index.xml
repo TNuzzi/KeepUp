@@ -1,13 +1,7 @@
 <Alloy>
     <Collection src="favorites" />
     <NavigationWindow id="win1" platform="ios">
-        <Window id="win2" title="Step Up Events" class="fb-bar-color">
-            <LeftNavButton>
-                <Button class="glyphish-magnify" />
-            </LeftNavButton>
-            <RightNavButton>
-                <Button class="btn-drawer-icon" />
-            </RightNavButton>
+        <Window id="win2" title="Step Up Events" class="fb-bar-color composite">
             <View class="n-container h-44 fb-toolbar-bg-color">
                 <View class="n-col-6 lo-horizontal" onClick="showMine">
                     <Label class="font-14-helveticaneue-bold color-gray text-center w-100%">FAVORITES</Label>

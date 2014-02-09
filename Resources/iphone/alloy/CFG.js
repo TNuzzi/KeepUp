@@ -1,1 +1,1 @@
-module.exports={"dependencies":{},"theme":"wriststrap"};
+module.exports={"dependencies":{"wriststrap.picker":"1.0"},"theme":"wriststrap"};

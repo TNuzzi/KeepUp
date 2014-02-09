@@ -1,3 +1,22 @@
+var picker = Alloy.createWidget("wriststrap.picker", "widget", {
+    data: [[{
+            title: 'All',
+            id: 'testId'
+        },{
+            title: 'Chicago',
+            id: 'test1Id'
+        },{
+            title: 'Los Angeles',
+            id: 'test2Id'
+        },{
+            title: 'New York',
+            id: 'test3Id'
+        }]],
+    onDone: function (selectedValues) {
+        alert(selectedValues);
+    }
+});
+
 var test = [{
     "title": "Pathways to Professions Workshop",
     "description": "Mentor 11th graders as they explore career possibilities-- help a girl \"see what she can be!\"",
@@ -45,7 +64,7 @@ function showMine() {
 }
 
 function showLocations() {
-    alert("showLocations");
+    picker.getView().showPicker();
 }
-
+$.win1.add(picker.getView());
 $.win1.open();
