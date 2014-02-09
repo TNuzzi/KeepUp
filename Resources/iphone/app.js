@@ -1,8 +1,16 @@
+function isiOS4Plus() {
+    var version = Titanium.Platform.version.split(".");
+    var major = parseInt(version[0]);
+    if (major >= 4) return true;
+    return false;
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 Alloy.Globals.checkForUpdates = function() {
     var events = Alloy.Collections.instance("events");
     events.fetch();
+    var numEventsUpdated = 0;
     var eventsRest = Alloy.createCollection("eventsRest");
     eventsRest.fetch({
         success: function() {
@@ -21,6 +29,7 @@ Alloy.Globals.checkForUpdates = function() {
                         });
                         newEvent.save();
                         events.add(newEvent);
+                        numEventsUpdated++;
                     }
                 } else {
                     newEvent = Alloy.createModel("events");
@@ -30,8 +39,31 @@ Alloy.Globals.checkForUpdates = function() {
                 }
             }
             Alloy.Globals.updateEventTable();
+            return numEventsUpdated;
         }
     });
 };
+
+if (isiOS4Plus()) {
+    var service;
+    Ti.App.addEventListener("resume", function() {
+        Ti.API.info("app is resuming from the background");
+    });
+    Ti.App.addEventListener("resumed", function() {
+        Ti.API.info("app has resumed from the background");
+        if (null != service) {
+            service.stop();
+            service.unregister();
+        }
+        Titanium.UI.iPhone.appBadge = null;
+    });
+    Ti.App.addEventListener("pause", function() {
+        Ti.API.info("app was paused from the foreground");
+        service = Ti.App.iOS.registerBackgroundService({
+            url: "/lib/bg.js"
+        });
+        Ti.API.info("registered background service = " + service);
+    });
+}
 
 Alloy.createController("index");

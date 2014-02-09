@@ -13,6 +13,8 @@
 Alloy.Globals.checkForUpdates = function() {
     var events = Alloy.Collections.instance("events");
     events.fetch();
+    
+    var numEventsUpdated = 0;
 
     var eventsRest = Alloy.createCollection("eventsRest");
     eventsRest.fetch({
@@ -33,6 +35,7 @@ Alloy.Globals.checkForUpdates = function() {
                         });
                         newEvent.save();
                         events.add(newEvent);
+                        numEventsUpdated++;
 
                     }
                 } else {
@@ -44,6 +47,53 @@ Alloy.Globals.checkForUpdates = function() {
             }
 
             Alloy.Globals.updateEventTable();
+            
+            return numEventsUpdated;
         }
     });
 };
+
+// test for iOS 4+
+function isiOS4Plus(){
+	if (Titanium.Platform.name == 'iPhone OS'){
+		var version = Titanium.Platform.version.split(".");
+		var major = parseInt(version[0]);
+		// can only test this support on a 3.2+ device
+		if (major >= 4){
+			return true;
+		}
+	}
+	return false;
+}
+ 
+if (isiOS4Plus()){
+ 
+	var service;
+	
+	// Ti.App.iOS.addEventListener('notification',function(e){
+	// You can use this event to pick up the info of the noticiation. 
+	// Also to collect the 'userInfo' property data if any was set
+	//		Ti.API.info("local notification received: "+JSON.stringify(e));
+	//	});
+	// fired when an app resumes from suspension
+	Ti.App.addEventListener('resume',function(e){
+		Ti.API.info("app is resuming from the background");
+	});
+	Ti.App.addEventListener('resumed',function(e){
+		Ti.API.info("app has resumed from the background");
+		// this will unregister the service if the user just opened the app
+		// is: not via the notification 'OK' button..
+		if(service!=null){
+			service.stop();
+			service.unregister();
+		}
+                Titanium.UI.iPhone.appBadge = null;
+	});
+	Ti.App.addEventListener('pause',function(e){
+		Ti.API.info("app was paused from the foreground");
+		
+		service = Ti.App.iOS.registerBackgroundService({url:'/lib/bg.js'});
+		Ti.API.info("registered background service = "+service);
+		
+	});
+}
