@@ -8,6 +8,7 @@ Keep Up is a mobile app that regularly checks the Step Up Women's Network (SUWN)
 The events API can be access at `http://stepupapi.herokuapp.com/api/events`.  It is a straight for JSON array.  Each element in the array represent an event on the calendar.
 
 Example JSON
+
     [{
         "id": 119,
         "guid": "34a566b2-c17e-8594-e405-ef1fa4be02b8",
