@@ -39,8 +39,8 @@
             </View>
             <View class="n-container h-44 fb-toolbar-bg-color">
                 <View class="n-col-6 lo-horizontal" onClick="getDirections">
-                    <ImageView class="glyphish-map-1 h-20 w-20 l-15" />
-                    <Label class="font-14-helveticaneue-bold color-gray text-center l-10 w-60%">DIRECTIONS</Label>
+                    <ImageView class="glyphish-map-1 h-20 w-20 l-15 touch-disabled" />
+                    <Label class="font-14-helveticaneue-bold color-gray text-center l-10 w-60% touch-disabled">DIRECTIONS</Label>
                 </View>
                 <View class="h-100% w-2 vert-line t-0" />
                 <View class="n-col-6 lo-horizontal" onClick="saveEvent">

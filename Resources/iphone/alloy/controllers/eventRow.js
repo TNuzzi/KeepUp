@@ -315,6 +315,7 @@ function Controller() {
     getDirections ? $.__views.__alloyId24.addEventListener("click", getDirections) : __defers["$.__views.__alloyId24!click!getDirections"] = true;
     $.__views.__alloyId25 = Ti.UI.createImageView({
         image: "/images/852-map.png",
+        touchEnabled: false,
         width: "20dp",
         height: "20dp",
         left: "15dp",
@@ -327,6 +328,7 @@ function Controller() {
             fontSize: "14dp"
         },
         color: "808080",
+        touchEnabled: false,
         textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
         width: "60%",
         left: "10dp",
