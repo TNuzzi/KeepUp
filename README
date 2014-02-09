@@ -9,7 +9,7 @@ The events API can be access at `http://stepupapi.herokuapp.com/api/events`.  It
 
 Example JSON
 
-    [{
+    {
         "id": 119,
         "guid": "34a566b2-c17e-8594-e405-ef1fa4be02b8",
         "title": "Mentor for a day at Step Up's After School Programs at Gertz-Ressler High School!",
@@ -25,5 +25,4 @@ Example JSON
         "area": "Los Angeles",
         "category": "Teen Programs",
         "url": "http://www.suwn.org/eventDetails.aspx?d=34a566b2-c17e-8594-e405-ef1fa4be02b8"
-    } ...]
-
+    }
