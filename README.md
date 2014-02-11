@@ -27,4 +27,4 @@ Example JSON
         "url": "http://www.suwn.org/eventDetails.aspx?d=34a566b2-c17e-8594-e405-ef1fa4be02b8"
     } ...]
 
-The source for this app can be found at (https://github.com/joshstewart/hackuponacause-rails)[https://github.com/joshstewart/hackuponacause-rails]
+The source for this app can be found at [https://github.com/joshstewart/hackuponacause-rails](https://github.com/joshstewart/hackuponacause-rails)
