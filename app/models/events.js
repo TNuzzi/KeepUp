@@ -22,8 +22,6 @@ exports.definition = {
 
             filterLocation: function(location) {
                 var filteredList = _.filter(this.models, function(model) {
-                    console.log(model.get("area"));
-                    console.log(location);
                     return model.get("area") === location;
                 });
                 console.log(filteredList.length);

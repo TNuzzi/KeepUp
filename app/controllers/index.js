@@ -23,7 +23,6 @@ Alloy.Globals.updateEventTable = function() {
 Alloy.Globals.updateEventTable();
 
 function syncWithServer() {
-    console.log("refresh");
     Alloy.Globals.updateEventTable();
 }
 
@@ -82,7 +81,6 @@ var picker = Alloy.createWidget("wriststrap.picker", "widget", {
         } else {
             data = [];
             var newLocations = events.filterLocation(selectedValues[0]);
-            console.log(newLocations.length);
             for (var i = 0; i < newLocations.length; i++) {
                 var event = newLocations.at(i);
                 data.push(Alloy.createController("eventRow", {

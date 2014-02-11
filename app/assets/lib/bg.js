@@ -48,7 +48,6 @@ function checkForUpdates() {
 			for (var i = response.length - 1; i >= 0; i--) {
 				event = response[i];
 				localEvent = localEvents[i];
-				// console.log(JSON.stringify(localEvent.toJSON()));
 				if (localEvent !== undefined) {
 					if (localEvent.checksum !== event.checksum) {
 						Ti.API.info("update detected");

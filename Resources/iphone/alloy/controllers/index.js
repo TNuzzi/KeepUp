@@ -1,6 +1,5 @@
 function Controller() {
     function syncWithServer() {
-        console.log("refresh");
         Alloy.Globals.updateEventTable();
     }
     function showMine() {
@@ -175,7 +174,6 @@ function Controller() {
             if ("All" === selectedValues[0]) Alloy.Globals.updateEventTable(); else {
                 data = [];
                 var newLocations = events.filterLocation(selectedValues[0]);
-                console.log(newLocations.length);
                 for (var i = 0; newLocations.length > i; i++) {
                     var event = newLocations.at(i);
                     data.push(Alloy.createController("eventRow", {
